@@ -3,11 +3,16 @@
         <ng-container *ngFor="let question of questions; let j = index;">
             <mat-step [formGroupName]="j" [stepControl]="form.get('formArray')?.get([j])">
                 <ng-template matStepLabel>{{question.label}}</ng-template>
-                <app-question [form]="form" [formArray]="form.get('formArray')" [formGroupNameNumber]="j" [question]="question"></app-question>
-                <!-- <mat-form-field>
-                  <mat-label>{{question.label}}</mat-label>
-                  <input type="{{question.type}}" matInput placeholder="{{question.placeholder}}" formControlName="{{question.key}}" required>
-                </mat-form-field> -->
+               <mat-form-field >
+                <!-- <app-question [formControlName]="question.key"  [form]="form" [formArray]="form.get('formArray')" [formGroupNameNumber]="j" [question]="question"></app-question> -->
+                <div [ngSwitch]="question.controlType">
+                  <input matInput *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+                  <mat-select matInput [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+                    <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+                  </mat-select>
+                </div>
+               </mat-form-field>
+               
                 <br/>
                 <div>
                   <button *ngIf="j !== 0" mat-button matStepperPrevious type="button">Back</button>
@@ -17,11 +22,5 @@
         </ng-container>
     </mat-horizontal-stepper>
   </form>
-<!-- 
-  <form [formGroup]="form">
-      <ng-container *ngFor="let question of questions; let j = index;">
-          <app-question [form]="form" [formArrayName]="'formArray'" [formGroupNameNumber]="j" [question]="question"></app-question>
-      </ng-container>
-  </form> -->
 
   

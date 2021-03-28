@@ -16,6 +16,7 @@ export class DynamicFormQuestionComponent implements OnInit {
   @Input() formGroupNameNumber: number;
   @Output() onQuestionValuesChanged = new EventEmitter<string>();
 
+
   constructor(private _formBuilder: FormBuilder, private qcs: QuestionControlService) {  }
   ngOnInit() {
     console.log(this.question)

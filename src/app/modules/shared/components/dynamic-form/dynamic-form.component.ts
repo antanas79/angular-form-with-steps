@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, AbstractControl } from '@angular/forms';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 import { QuestionBase } from '../../classes/question-base';
 import { Step } from '../../classes/step';
@@ -31,7 +32,7 @@ export class DynamicFormComponent implements OnInit {
       steps: this.qcs.toFormStepsArray(this.steps)
     });
 
-    console.log(this.stepsForm)
+    console.log(this.questions)
     this.onChanges();
   }
 
