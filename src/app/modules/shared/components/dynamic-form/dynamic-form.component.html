@@ -1,13 +1,13 @@
 <form [formGroup]="form">
     <mat-horizontal-stepper labelPosition="bottom" formArrayName="formArray" linear>
         <ng-container *ngFor="let question of questions; let j = index;">
-            <mat-step [formGroupName]="j" [stepControl]="formArray?.get([j])">
+            <mat-step [formGroupName]="j" [stepControl]="form.get('formArray')?.get([j])">
                 <ng-template matStepLabel>{{question.label}}</ng-template>
-                <!-- <app-question formControlName="{{question.key}}" [form]="form" [formArrayStringName]="'formArray'" [formGroupNameNumber]="j" [question]="question"></app-question> -->
-                <mat-form-field>
+                <app-question [form]="form" [formArray]="form.get('formArray')" [formGroupNameNumber]="j" [question]="question"></app-question>
+                <!-- <mat-form-field>
                   <mat-label>{{question.label}}</mat-label>
                   <input type="{{question.type}}" matInput placeholder="{{question.placeholder}}" formControlName="{{question.key}}" required>
-                </mat-form-field>
+                </mat-form-field> -->
                 <br/>
                 <div>
                   <button *ngIf="j !== 0" mat-button matStepperPrevious type="button">Back</button>
@@ -23,3 +23,5 @@
           <app-question [form]="form" [formArrayName]="'formArray'" [formGroupNameNumber]="j" [question]="question"></app-question>
       </ng-container>
   </form> -->
+
+  

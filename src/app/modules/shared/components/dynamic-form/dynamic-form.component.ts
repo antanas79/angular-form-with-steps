@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, AbstractControl } from '@angular/forms';
 
 import { QuestionBase } from '../../classes/question-base';
+import { Step } from '../../classes/step';
 import { QuestionControlService } from '../../services/question-control.service';
 
 @Component({
@@ -12,9 +13,10 @@ import { QuestionControlService } from '../../services/question-control.service'
 export class DynamicFormComponent implements OnInit {
 
   @Input() questions: QuestionBase<string>[] = [];
+  @Input() steps: Step[] = [];
   @Output() onFormValueChanges = new EventEmitter<string>();
   form: FormGroup;
-  formArray: FormGroup;
+  stepsForm: FormGroup;
   payLoad = '';
 
 
@@ -24,7 +26,12 @@ export class DynamicFormComponent implements OnInit {
     this.form = this._formBuilder.group({
       formArray: this.qcs.toFormArray(this.questions)
     });
-    console.log(this.form)
+
+    this.stepsForm = this._formBuilder.group({
+      steps: this.qcs.toFormStepsArray(this.steps)
+    });
+
+    console.log(this.stepsForm)
     this.onChanges();
   }
 

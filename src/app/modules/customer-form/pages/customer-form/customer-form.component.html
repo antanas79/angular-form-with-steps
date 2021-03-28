@@ -1,2 +1,2 @@
 <h1 class="pt-3">LOAN APPLICATION</h1>
-<app-dynamic-form (onFormValueChanges)="updateFormValues($event)" [questions]="questions$ | async"></app-dynamic-form>
+<app-dynamic-form [steps]="steps$ | async" (onFormValueChanges)="updateFormValues($event)" [questions]="questions$ | async"></app-dynamic-form>

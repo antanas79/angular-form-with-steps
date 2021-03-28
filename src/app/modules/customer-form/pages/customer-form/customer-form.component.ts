@@ -4,7 +4,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 import { QuestionService } from '../../../shared/services/question.service';
 import { QuestionBase } from '../../../shared/classes/question-base';
-import { Observable } from 'rxjs';
+import { Step } from '../../../shared/classes/step';
+import { Observable, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-customer-form',
@@ -17,15 +18,20 @@ import { Observable } from 'rxjs';
 })
 export class CustomerFormComponent implements OnInit {
   questions$: Observable<QuestionBase<any>[]>;
+  steps$: Observable<Step[]>;
   title = 'newMat';
   isLinear = true;
 
   constructor(service: QuestionService, 
     private _formBuilder: FormBuilder) {
       this.questions$ = service.getLoanQuestions();
+      this.steps$ = service.getLoanStepsWithQuestions();
     }
 
   ngOnInit() {
+    // this.steps$.pipe(
+    //   map => map
+    // ).subscribe((res => console.log(res)))
   }
 
   updateFormValues(event) {
