@@ -1,3 +1,9 @@
+/* import only needed bootstrap components */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities";
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -44,12 +50,20 @@ footer, header {
 }
 main {
     background-color: rgb(251, 242, 235);
-    height: calc(100% - 40px - 40px);
-    min-height: 400px;
+    height: calc(100% - 40px - 40px - 40px);
+    overflow: auto;
+    padding-bottom: 40px;
 }
 
-h3 {
-    color: rgb(243, 89,60);
-    font-weight: 800;
+h1 {
+    color: #f35b1c;
+    font: 32px/1 HeadlineBlack,Helvetica,Arial,sans-serif;
+    margin: 0;
 }
 
+
+@media all and (min-width: 0px) and (max-width: 767px) {
+    .mat-stepper-label-position-bottom .mat-horizontal-stepper-header .mat-step-label  {
+        display: none;
+    }
+}
