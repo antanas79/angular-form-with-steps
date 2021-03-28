@@ -8,33 +8,29 @@ import { Step } from '../../../shared/classes/step';
 import { Observable, pipe } from 'rxjs';
 
 @Component({
-  selector: 'app-customer-form',
-  templateUrl: './customer-form.component.html',
-  styleUrls: ['./customer-form.component.scss'],
+  selector: 'app-loan-form',
+  templateUrl: './loan-form.component.html',
+  styleUrls: ['./loan-form.component.scss'],
   providers: [{
     provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
   },
   QuestionService]
 })
-export class CustomerFormComponent implements OnInit {
-  questions$: Observable<QuestionBase<any>[]>;
+
+export class LoanFormComponent implements OnInit {
   steps$: Observable<Step[]>;
   title = 'newMat';
   isLinear = true;
 
-  constructor(service: QuestionService, 
+  constructor(private service: QuestionService, 
     private _formBuilder: FormBuilder) {
-      this.questions$ = service.getLoanQuestions();
       this.steps$ = service.getLoanStepsWithQuestions();
     }
 
   ngOnInit() {
-    // this.steps$.pipe(
-    //   map => map
-    // ).subscribe((res => console.log(res)))
   }
 
-  updateFormValues(event) {
+  handleChanges(event) {
     console.log(event)
   }
 

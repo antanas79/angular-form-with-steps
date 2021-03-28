@@ -1,24 +1,31 @@
-<form [formGroup]="form">
-    <mat-horizontal-stepper labelPosition="bottom" formArrayName="formArray" linear>
-        <ng-container *ngFor="let question of questions; let j = index;">
-            <mat-step [formGroupName]="j" [stepControl]="form.get('formArray')?.get([j])">
-                <ng-template matStepLabel>{{question.label}}</ng-template>
-               <mat-form-field >
-                <!-- <app-question [formControlName]="question.key"  [form]="form" [formArray]="form.get('formArray')" [formGroupNameNumber]="j" [question]="question"></app-question> -->
-                <div [ngSwitch]="question.controlType">
-                  <input matInput *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
-                  <mat-select matInput [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
-                    <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
-                  </mat-select>
-                </div>
-               </mat-form-field>
-               
+<form [formGroup]="stepsForm">
+    <mat-horizontal-stepper labelPosition="bottom" formArrayName="steps" [linear]="isLinear">
+        <ng-container *ngFor="let step of steps; let j = index;">
+            <mat-step [editable]="step.isEditable" class="mt-3" [formGroupName]="j" [stepControl]="stepsForm.get('steps')?.get([j])"> 
+                <ng-template class="mt-3" matStepLabel>{{step.label}}</ng-template>
+                <div *ngIf="step.text">{{step.text}}</div>
+                <form-summary *ngIf="j == steps.length - 1" [steps]="steps" [payLoad]="stepsForm.getRawValue().steps"></form-summary>
+                <!-- <app-form-label [label]="step.label"></app-form-label> -->
+                <ng-container *ngFor="let question of steps[j].questions"> 
+                  <mat-form-field class="mr-3 mt-3">
+                    <div [ngSwitch]="question.controlType">
+                      <input placeholder="{{question.placeholder}}"  matInput *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+                      <mat-select placeholder="{{question.placeholder}}"  matInput [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+                        <mat-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</mat-option>
+                      </mat-select>
+                 
+                    </div>
+                    <mat-error *ngIf="question.key.invalid"><span class="text-capitalize">{{question.key}}</span> is invalid!</mat-error>
+                  </mat-form-field>
+                </ng-container>
                 <br/>
                 <div>
-                  <button *ngIf="j !== 0" mat-button matStepperPrevious type="button">Back</button>
-                  <button *ngIf="j !== questions.length -1" mat-button matStepperNext type="button">Next</button>
+                
+                  <button *ngIf="j !== 0 || j !== 1" mat-button matStepperPrevious type="button">Back</button>
+                  <button *ngIf="j !== steps.length -1" mat-button matStepperNext type="button">Next</button>
+                  <button *ngIf="j == steps.length -1"  mat-button  (click)="onSubmit">Submit</button>
                 </div>
-              </mat-step>
+          </mat-step>
         </ng-container>
     </mat-horizontal-stepper>
   </form>

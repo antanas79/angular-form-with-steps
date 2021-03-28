@@ -9,9 +9,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { DynamicFormQuestionComponent } from './components/dynamic-form-question/dynamic-form-question.component';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SummaryComponent } from './components/summary/summary.component';
 
 @NgModule({
-  declarations: [DynamicFormQuestionComponent, DynamicFormComponent],
+  declarations: [DynamicFormQuestionComponent, DynamicFormComponent, SummaryComponent],
   imports: [
     CommonModule,
     FormsModule,

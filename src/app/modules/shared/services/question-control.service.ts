@@ -1,48 +1,22 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
-import { QuestionBase } from '../classes/question-base';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Step } from '../classes/step';
 
 @Injectable()
 export class QuestionControlService {
   constructor(private _formBuilder: FormBuilder) { }
 
-  toFormGroup(questions: QuestionBase<string>[] ) {
-    const group: any = {};
-
-    questions.forEach(question => {
-      group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
-                                              : new FormControl(question.value || '');
-    });
-    return new FormGroup(group);
-  }
-
-  toFormArray(questions: QuestionBase<string>[] ) {
-    let list = this._formBuilder.array([]);
-
-    questions.forEach(question => {
-      let item: any = {};
-      item[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
-                                              : new FormControl(question.value || '');
-      list.push(new FormGroup(item));
-    });
-
-    return list;
-  }
-
   toFormStepsArray(steps: Step[] ) {
-    // let list = this._formBuilder.array([]);
+    let stepsArray =  this._formBuilder.array([])
+    for (let i=0; i < steps?.length; i++) {
+      let item: any = {};
+      for (let j = 0; j < steps[i].questions?.length; j++) {
+        item[steps[i].questions[j].key] = steps[i].questions[j].required ? new FormControl(steps[i].questions[j].value || '', Validators.required)
+                                            : new FormControl(steps[i].questions[j].value || '');
+      }
+      stepsArray.push(new FormGroup(item))
+    }
 
-    // steps.forEach(step => {
-    //   let item: any = {};
-    //   item[step.key] = step.required ? new FormControl('', Validators.required)
-    //                                           : new FormControl('');
-    //   list.push(item);
-    // });
-
-    // // new FormGroup(item);
-  
-    // console.log(list)
-    // return list;
+    return stepsArray;
   }
 }
