@@ -19,7 +19,6 @@ import { Observable, pipe } from 'rxjs';
 
 export class LoanFormComponent implements OnInit {
   steps$: Observable<Step[]>;
-  title = 'newMat';
   isLinear = true;
 
   constructor(private service: QuestionService, 
