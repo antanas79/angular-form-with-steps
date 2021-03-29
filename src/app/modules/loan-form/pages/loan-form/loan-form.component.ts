@@ -31,7 +31,6 @@ export class LoanFormComponent implements OnInit {
   }
 
   handleChanges(event) {
-    console.log(event)
   }
 
   submit(){
