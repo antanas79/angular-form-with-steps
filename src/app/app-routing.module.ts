@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/loan-form/loan-form.module').then(m => m.LoanFormModule),
+    loadChildren: () => import('./modules/reactive-loan-form/reactive-loan-form.module').then(m => m.ReactiveLoanFormModule),
     data: {
         title: 'Form page',
     },
