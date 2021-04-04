@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,  } from '@angular/core';
 import { Step } from '../../classes/step';
 
 
@@ -11,6 +11,7 @@ import { Step } from '../../classes/step';
 export class SummaryComponent implements OnInit {
   @Input() payLoad: any = {};
   @Input() steps: Step[] = [];
+
   constructor() { }
 
   ngOnInit(): void {

@@ -5,7 +5,7 @@ export class Step {
     required: boolean;
     order: number;
     isEditable: boolean;
-    questions: QuestionBase<string>[];
+    questions: QuestionBase<string | number>[];
     label: string;
     text: string;
   

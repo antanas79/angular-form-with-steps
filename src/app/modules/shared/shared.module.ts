@@ -10,9 +10,13 @@ import { DynamicFormQuestionComponent } from './components/dynamic-form-question
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SummaryComponent } from './components/summary/summary.component';
+import { InputComponent } from './components/input/input.component';
+import { SelectComponent } from './components/select/select.component';
+import { QuestionComponent } from './components/question/question.component';
+import { FieldComponent } from './components/field/field.component';
 
 @NgModule({
-  declarations: [DynamicFormQuestionComponent, DynamicFormComponent, SummaryComponent],
+  declarations: [DynamicFormQuestionComponent, DynamicFormComponent, SummaryComponent, InputComponent, SelectComponent, QuestionComponent, FieldComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,8 +38,11 @@ import { SummaryComponent } from './components/summary/summary.component';
     MatSelectModule,
     DynamicFormQuestionComponent,
     DynamicFormComponent,
-    MatFormFieldModule
-
+    MatFormFieldModule,
+    InputComponent,
+    SelectComponent,
+    QuestionComponent,
+    FieldComponent
   ]
 })
 export class SharedModule { }

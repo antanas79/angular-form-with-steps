@@ -5,7 +5,7 @@ import { QuestionControlService } from '../../services/question-control.service'
 import { MatFormFieldControl } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-question',
+  selector: 'app-dynamic-question',
   templateUrl: './dynamic-form-question.component.html',
   providers: [{provide: MatFormFieldControl, useExisting: DynamicFormQuestionComponent}],
 })

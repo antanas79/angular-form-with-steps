@@ -11,8 +11,8 @@ export class QuestionControlService {
     for (let i=0; i < steps?.length; i++) {
       let item: any = {};
       for (let j = 0; j < steps[i].questions?.length; j++) {
-        item[steps[i].questions[j].key] = steps[i].questions[j].required ? new FormControl(steps[i].questions[j].value || '', Validators.required)
-                                            : new FormControl(steps[i].questions[j].value || '');
+        item[steps[i].questions[j].key] = steps[i].questions[j].required ? new FormControl(steps[i].questions[j].value || null, Validators.required)
+                                            : new FormControl(steps[i].questions[j].value || null);
       }
       stepsArray.push(new FormGroup(item))
     }

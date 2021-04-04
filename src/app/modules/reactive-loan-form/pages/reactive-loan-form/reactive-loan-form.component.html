@@ -1,1 +1,36 @@
-<p>reactive-loan-form works!</p>
+<form [formGroup]="stepsForm" *ngIf="loaded" class="my-3">
+    <mat-horizontal-stepper formArrayName="steps" labelPosition="bottom" [linear]="isLinear">
+          <ng-container *ngFor="let step of [0,1,2,3], let i =index">
+            <mat-step class="mt-3" [formGroupName]="i" [stepControl]="stepsForm.get('steps')?.get([i])"> 
+              
+                <ng-container [ngSwitch]="questions[i].controlType">
+                  <app-input [formControlName]="questions[i].key" *ngSwitchCase="'textbox'" [question]="questions[i]" ></app-input>
+                  <app-select [formControlName]="questions[i].key" *ngSwitchCase="'dropdown'" [question]="questions[i]" ></app-select>
+              </ng-container>  
+              
+
+            <br/>
+            <div>
+              <button mat-button matStepperPrevious type="button">Back</button>
+              <button mat-button matStepperNext type="button">Next</button>
+              <button mat-button  (click)="onSubmit">Submit</button>
+            </div>
+         </mat-step>
+          </ng-container>
+    </mat-horizontal-stepper>
+  </form>
+<!-- 
+  <form [formGroup]="stepsForm" *ngIf="loaded" class="my-3">
+    <ng-container >
+          <ng-container *ngFor="let step of [0,1,2,3], let i =index">
+            <ng-container class="mt-3" >               
+                <app-question [formGroupNameNumber]="i"  [formArrayNameString]="'steps'" [formControlName]="questions[i].key"  [question]="questions[i]"></app-question>
+            <br/>
+            <div>
+
+            </div>
+          </ng-container >
+          </ng-container>
+        </ng-container>
+  </form> -->
+

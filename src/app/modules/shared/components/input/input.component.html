@@ -1,0 +1,7 @@
+<input 
+[value]="value"   
+(input)="onChange($event.target.value)"
+(blur)="onTouched()"
+[disabled]="isDisabled" 
+[id]="question.key" 
+[type]="question.type">

@@ -1,0 +1,4 @@
+<ng-container (input)="onChange($event.target.value)" [ngSwitch]="question.controlType">
+    <app-input *ngSwitchCase="'textbox'" [question]="question" ></app-input>
+    <app-select *ngSwitchCase="'dropdown'" [question]="question" ></app-select>
+</ng-container>

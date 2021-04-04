@@ -8,14 +8,14 @@ import { of } from 'rxjs';
 export class QuestionService {
   getLoanStepsWithQuestions() {
     const steps: Step[] = [
-      new Step({
-        key: 1,
-        required: true,
-        order: 0,
-        isEditable: true,
-        label: 'Intro',
-        text: 'Press "next" to start applying for a loan.'
-      }),
+      // new Step({
+      //   key: 1,
+      //   required: true,
+      //   order: 0,
+      //   isEditable: true,
+      //   label: 'Intro',
+      //   text: 'Press "next" to start applying for a loan.'
+      // }),
       new Step({
         key: 1,
         required: true,
@@ -29,30 +29,32 @@ export class QuestionService {
             placeholder: 'Monthy Income After Taxes (EUR)',
             required: true,
             type: 'number',
+            value: 69
           }),
         ]
       }),
-      new Step({
-        key: 2,
-        required: true,
-        order: 1,
-        isEditable: true,
-        label: 'Reason',
-        questions: [
-          new DropdownQuestion({
-            key: 'reason',
-            label: 'Loan reason',
-            placeholder: 'Loan reason',
-            required: true,
-            options: [
-              {key: 'car',  value: 'Buy car'},
-              {key: 'phone',   value: 'Buy phone'},
-              {key: 'home',  value: 'Home enhancements'},
-              {key: 'other',   value: 'Other'},
-            ],
-          })
-        ]
-      }),
+        new Step({
+          key: 2,
+          required: true,
+          order: 1,
+          isEditable: true,
+          label: 'Reason',
+          questions: [
+            new DropdownQuestion({
+              key: 'reason',
+              label: 'Loan reason',
+              placeholder: 'Loan reason',
+              required: true,
+              options: [
+                {key: 'car',  value: 'Buy car'},
+                {key: 'phone',   value: 'Buy phone'},
+                {key: 'home',  value: 'Home enhancements'},
+                {key: 'other',   value: 'Other'},
+              ],
+              value: null
+            })
+          ]
+        }),
       new Step({
         key: 3,
         required: true,
@@ -70,6 +72,7 @@ export class QuestionService {
               {key: 'sms',   value: 'SMS'},
               {key: 'email',  value: 'Email'},
             ],
+            value: null
           })
         ]
       }),
@@ -91,18 +94,19 @@ export class QuestionService {
               {key: 'good',   value: 'Good'},
               {key: 'unproven', value: 'Unproven'}
             ],
+            value: null,
             order: 3
           })
         ]
       }),
-      new Step({
-        key: 5,
-        required: false,
-        order: 5,
-        label: 'Summary',
-        isEditable: true,
-        text: 'Please review entered information below before submitting the form.'
-      })
+      // new Step({
+      //   key: 5,
+      //   required: false,
+      //   order: 5,
+      //   label: 'Summary',
+      //   isEditable: true,
+      //   text: 'Please review entered information below before submitting the form.'
+      // })
     ]
     return of(steps.sort((a, b) => a.order - b.order));
   }
