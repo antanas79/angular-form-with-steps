@@ -14,9 +14,10 @@ import { InputComponent } from './components/input/input.component';
 import { SelectComponent } from './components/select/select.component';
 import { QuestionComponent } from './components/question/question.component';
 import { FieldComponent } from './components/field/field.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
-  declarations: [DynamicFormQuestionComponent, DynamicFormComponent, SummaryComponent, InputComponent, SelectComponent, QuestionComponent, FieldComponent],
+  declarations: [DynamicFormQuestionComponent, DynamicFormComponent, SummaryComponent, InputComponent, SelectComponent, QuestionComponent, FieldComponent, ErrorComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -42,7 +43,7 @@ import { FieldComponent } from './components/field/field.component';
     InputComponent,
     SelectComponent,
     QuestionComponent,
-    FieldComponent
+    FieldComponent,
   ]
 })
 export class SharedModule { }

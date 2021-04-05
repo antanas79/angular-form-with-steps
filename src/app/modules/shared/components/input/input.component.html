@@ -1,7 +1,14 @@
-<input 
-[value]="value"   
-(input)="onChange($event.target.value)"
-(blur)="onTouched()"
-[disabled]="isDisabled" 
-[id]="question.key" 
-[type]="question.type">
+<ng-container [formGroup]="form">
+    <ng-container [formArrayName]="formArrayNameString">
+        <ng-container [formGroupName]="formGroupNameNumber">
+            <input 
+            class="form-control form-control-sm"
+            [formControlName]="question.key"
+            [id]="question.key" 
+            [type]="question.type"
+            placeholder="{{question.placeholder}}"
+            >
+        </ng-container>
+    </ng-container>
+</ng-container>
+

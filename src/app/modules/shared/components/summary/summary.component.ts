@@ -12,6 +12,7 @@ export class SummaryComponent implements OnInit {
   @Input() payLoad: any = {};
   @Input() steps: Step[] = [];
 
+
   constructor() { }
 
   ngOnInit(): void {

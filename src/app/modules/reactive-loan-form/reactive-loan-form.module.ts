@@ -5,9 +5,11 @@ import { ReactiveLoanFormRoutingModule } from './reactive-loan-form-routing.modu
 import { ReactiveLoanFormComponent } from './pages/reactive-loan-form/reactive-loan-form.component';
 import { QuestionService } from '../shared/services/question.service';
 import { QuestionControlService } from '../shared/services/question-control.service';
+import { IntroComponent } from './components/intro/intro.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 @NgModule({
-  declarations: [ReactiveLoanFormComponent],
+  declarations: [ReactiveLoanFormComponent, IntroComponent, SummaryComponent],
   imports: [
     CommonModule,
     SharedModule, 

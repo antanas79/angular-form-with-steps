@@ -8,16 +8,7 @@ import { of } from 'rxjs';
 export class QuestionService {
   getLoanStepsWithQuestions() {
     const steps: Step[] = [
-      // new Step({
-      //   key: 1,
-      //   required: true,
-      //   order: 0,
-      //   isEditable: true,
-      //   label: 'Intro',
-      //   text: 'Press "next" to start applying for a loan.'
-      // }),
       new Step({
-        key: 1,
         required: true,
         order: 0,
         isEditable: true,
@@ -34,50 +25,41 @@ export class QuestionService {
         ]
       }),
         new Step({
-          key: 2,
           required: true,
           order: 1,
           isEditable: true,
-          label: 'Reason',
+          label: 'Contact Method',
           questions: [
             new DropdownQuestion({
-              key: 'reason',
-              label: 'Loan reason',
-              placeholder: 'Loan reason',
+              key: 'contactMethod',
+              label: 'Contact method',
+              placeholder: 'Contact method',
               required: true,
               options: [
-                {key: 'car',  value: 'Buy car'},
-                {key: 'phone',   value: 'Buy phone'},
-                {key: 'home',  value: 'Home enhancements'},
-                {key: 'other',   value: 'Other'},
+                {key: 'phone',  value: 'Phone call'},
+                {key: 'email',   value: 'Email'},
+                {key: 'sms',  value: 'SMS'},
               ],
               value: null
             })
           ]
         }),
       new Step({
-        key: 3,
         required: true,
-        order: 1,
+        order: 2,
         isEditable: true,
         label: 'Contact',
         questions: [
-          new DropdownQuestion({
+          new TextboxQuestion({
             key: 'contact',
-            label: 'Preferred contact method',
-            placeholder: 'Preferred contact method',
+            label: 'Enter your phone',
+            placeholder: 'Enter your phone',
             required: true,
-            options: [
-              {key: 'call',   value: 'Call'},
-              {key: 'sms',   value: 'SMS'},
-              {key: 'email',  value: 'Email'},
-            ],
             value: null
           })
         ]
       }),
       new Step({
-        key: 4,
         required: true,
         order: 3,
         isEditable: true,
@@ -88,25 +70,11 @@ export class QuestionService {
             label: 'Loan amount',
             placeholder: 'Loan Amount (EUR)',
             required: true,
-            options: [
-              {key: 'solid',  value: 'Solid'},
-              {key: 'great',  value: 'Great'},
-              {key: 'good',   value: 'Good'},
-              {key: 'unproven', value: 'Unproven'}
-            ],
             value: null,
             order: 3
           })
         ]
       }),
-      // new Step({
-      //   key: 5,
-      //   required: false,
-      //   order: 5,
-      //   label: 'Summary',
-      //   isEditable: true,
-      //   text: 'Please review entered information below before submitting the form.'
-      // })
     ]
     return of(steps.sort((a, b) => a.order - b.order));
   }

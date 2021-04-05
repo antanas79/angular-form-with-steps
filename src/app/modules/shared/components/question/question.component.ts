@@ -1,22 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { FormGroup, FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, FormArray} from '@angular/forms';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
-  // providers:
-  // [ { 
-  //   provide: NG_VALUE_ACCESSOR,
-  //   multi: true,
-  //   useExisting: forwardRef(() => QuestionComponent),
-  // }],
 })
-export class QuestionComponent  {
+export class QuestionComponent implements OnInit  {
   @Input() question: any = {};
   @Input() form: FormGroup;
   @Input() formGroupNameNumber: number;
   @Input() formArrayNameString: string;
+  @Input() group: any;
+  @Input() showError: boolean;
   @Output() onInputValueChanges = new EventEmitter<string>();
   value: string;
   onChange(event) {}
@@ -24,22 +20,17 @@ export class QuestionComponent  {
   isDisabled: boolean = false;
   control: FormControl;
   
+  
   constructor() { }
 
-  // writeValue(value) {
-  //   this.value = value
-  // }
+  get questionControls () {
+    return
+  }
 
-  // registerOnChange(fn) {
-  //   this.onChange = fn
-  //   console.log(fn)
-  // }
+  get questionConrols() { return (this.form.get(this.formArrayNameString) as FormArray).controls; }
 
-  // registerOnTouched(fn) {
-  //   this.onTouched = fn
-  // }
+  ngOnInit() {
 
-  // setDisabledState(isDisabled) {
-  //   this.isDisabled = isDisabled;
-  // }
+    console.log(this.group)
+  }
 }

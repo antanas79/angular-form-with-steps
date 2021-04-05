@@ -1,0 +1,35 @@
+<form [formGroup]="stepsForm">
+    <mat-horizontal-stepper labelPosition="bottom" formArrayName="steps" [linear]="isLinear">
+        <mat-step [editable]="false">
+          <div>
+            Press "next" to start applying for a loan.
+          </div>
+          <button mat-button matStepperNext type="button">Next</button>
+        </mat-step>
+        <ng-container *ngFor="let step of [0,1,2,3]; let j = index;">
+            <mat-step [editable]="true" class="mt-3" [formGroupName]="j" [stepControl]="stepsForm.get('steps')?.get([j])"> 
+                <ng-template class="mt-3" matStepLabel>{{step.label}}</ng-template>
+                <div *ngIf="step.text">{{step.text}}</div>
+                  <mat-form-field class="mr-3 mt-3">
+                    <div [ngSwitch]="questions[j].controlType">
+                      <input placeholder="{{questions[j].placeholder}}"  matInput *ngSwitchCase="'textbox'" [formControlName]="questions[j].key" [id]="questions[j].key" [type]="questions[j].type">
+                      <mat-select placeholder="{{questions[j].placeholder}}"  matInput [id]="questions[j].key" *ngSwitchCase="'dropdown'" [formControlName]="questions[j].key">
+                        <mat-option *ngFor="let opt of questions[j].options" [value]="opt.key">{{opt.value}}</mat-option>
+                      </mat-select>
+                    </div>
+                    <mat-error><span class="text-capitalize">{{questions[j].key}}</span> is invalid!</mat-error>
+                  </mat-form-field>
+                <br/>
+                <div>
+                  <button mat-button matStepperPrevious type="button">Back</button>
+                  <button mat-button matStepperNext type="button">Next</button>
+                </div>
+          </mat-step>
+        </ng-container>
+        <mat-step>
+      
+        </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+
+  

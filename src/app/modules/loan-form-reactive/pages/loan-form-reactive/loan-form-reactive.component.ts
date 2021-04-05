@@ -4,23 +4,24 @@ import { QuestionService } from '../../../shared/services/question.service';
 import { QuestionControlService } from '../../../shared/services/question-control.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
-  selector: 'app-reactive-loan-form',
-  templateUrl: './reactive-loan-form.component.html',
-  styleUrls: ['./reactive-loan-form.component.scss']
+  selector: 'app-loan-form-reactive',
+  templateUrl: './loan-form-reactive.component.html',
+  styleUrls: ['./loan-form-reactive.component.scss'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
+  },
+  QuestionService,
+  QuestionControlService
+]
 })
-export class ReactiveLoanFormComponent implements OnInit, OnDestroy {
+export class LoanFormReactiveComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<any> = new Subject();
   stepsForm: FormGroup;
-  step1form: FormGroup;
-  step2form: FormGroup;
-  step3form: FormGroup;
-  step4form: FormGroup;
-  showError =false;
-  mockData: any;
+  showError = false;
   questions: any;
-
   loaded =false;
   isLinear= true;
   constructor(public _formBuilder: FormBuilder,
@@ -44,20 +45,17 @@ export class ReactiveLoanFormComponent implements OnInit, OnDestroy {
             value: 69
           },
           {
-            controlType: "dropdown",
-            key: "reason",
-            label: "Loan reason",
-            options: [
-              {key: "car", value: "Buy car"},
-              {key: "phone", value: "Buy phone"},
-              {key: "home", value: "Home enhancements"},
-              {key: "other", value: "Other"}
-            ],
-            order: 1,
-            placeholder: "Loan reason",
-            required: true,
-            type: "",
-            value: null
+          controlType: "dropdown",
+          key: 'contactMethod',
+          label: 'Contact method',
+          placeholder: 'Contact method',
+          required: true,
+          options: [
+            {key: 'phone',  value: 'Phone call'},
+            {key: 'email',   value: 'Email'},
+            {key: 'sms',  value: 'SMS'},
+          ],
+          value: null
           },
           {
             controlType: "dropdown",
@@ -86,8 +84,6 @@ export class ReactiveLoanFormComponent implements OnInit, OnDestroy {
             value: null
           }
         ]
-        console.log(this.questions)
-
     }, () => {});
 
     this.stepsForm = this._formBuilder.group({
@@ -96,7 +92,7 @@ export class ReactiveLoanFormComponent implements OnInit, OnDestroy {
           income: [null, [Validators.required]],
         }),
         this._formBuilder.group({
-          reason: [null, [Validators.required]]
+          contactMethod: [null, [Validators.required]]
         }),
         this._formBuilder.group({
           contact: [null, [Validators.required]]
@@ -109,40 +105,39 @@ export class ReactiveLoanFormComponent implements OnInit, OnDestroy {
 
     console.log(this.stepsForm)
 
-    this.loaded =true;
-    this.onChanges()
+    this.loaded = true;
+    this.onChanges();
 
   }
 
-  get steps() { return (this.stepsForm.get('steps') as FormArray).controls; }
+  // get steps() { return (this.stepsForm.get('steps') as FormArray).controls; }
 
   onSubmit() {
 
   }
 
-  checkErrors(i: number) {
-    if ((this.stepsForm.get('steps') as FormArray).controls[i].get('income').errors) {
-      this.showError = true;
-    } else {
-      this.showError = false;
-    }
-    console.log((this.stepsForm.get('steps') as FormArray).controls[0].get('income').errors)
-  }
+  // checkErrors(i: number) {
+  //   if ((this.stepsForm.get('steps') as FormArray).controls[i].get('income').errors) {
+  //     this.showError = true;
+  //   } else {
+  //     this.showError = false;
+  //   }
+  //   console.log((this.stepsForm.get('steps') as FormArray).controls[0].get('income').errors)
+  // }
 
   onChanges() {
     this.stepsForm.get('steps').valueChanges.subscribe(val => {
-      setTimeout(() => (this.stepsForm.get('steps')as FormArray).controls[0].get('income').updateValueAndValidity({ emitEvent: false }), 0);
-      console.log((this.stepsForm.get('steps') as FormArray).controls[0].errors)
+      console.log(this.stepsForm.get('steps').value)
     });
   }
 
-  onSelectValueChanges(event) {
-    console.log(event)
-  }
+  // onSelectValueChanges(event) {
+  //   console.log(event)
+  // }
 
-  onInputValueChanges(event) {
-    console.log(event)
-  }
+  // onInputValueChanges(event) {
+  //   console.log(event)
+  // }
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
