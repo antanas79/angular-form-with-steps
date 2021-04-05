@@ -37,41 +37,46 @@ export class LoanFormReactiveComponent implements OnInit, OnDestroy {
 			.pipe(takeUntil(this.ngUnsubscribe))
 			.subscribe(
 				(res) => {
-					console.log(res);
 					this.steps = res;
+					this.stepsForm = this._formBuilder.group({
+						steps: this._formBuilder.array([
+							this._formBuilder.group({
+								income: [
+									null,
+									[Validators.required, Validators.min(0)]
+								]
+							}),
+							this._formBuilder.group({
+								contactMethod: [
+									0,
+									[Validators.required, Validators.min(1)]
+								]
+							}),
+							this._formBuilder.group({
+								contact: [
+									null,
+									[
+										Validators.required,
+										Validators.minLength(8),
+										Validators.maxLength(8)
+									]
+								]
+							}),
+							this._formBuilder.group({
+								amount: [
+									null,
+									[Validators.required, Validators.min(0)]
+								]
+							})
+						])
+					});
+
+					this.loaded = true;
+					this.onChanges();
 				},
 				// eslint-disable-next-line @typescript-eslint/no-empty-function
 				() => {}
 			);
-
-		this.stepsForm = this._formBuilder.group({
-			steps: this._formBuilder.array([
-				this._formBuilder.group({
-					income: [null, [Validators.required, Validators.min(0)]]
-				}),
-				this._formBuilder.group({
-					contactMethod: [0, [Validators.required, Validators.min(1)]]
-				}),
-				this._formBuilder.group({
-					contact: [
-						null,
-						[
-							Validators.required,
-							Validators.minLength(8),
-							Validators.maxLength(8)
-						]
-					]
-				}),
-				this._formBuilder.group({
-					amount: [null, [Validators.required, Validators.min(0)]]
-				})
-			])
-		});
-
-		console.log(this.stepsForm);
-
-		this.loaded = true;
-		this.onChanges();
 	}
 
 	onChanges(): void {
