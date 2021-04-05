@@ -65,7 +65,7 @@ export class LoanFormReactiveComponent implements OnInit, OnDestroy {
 							this._formBuilder.group({
 								amount: [
 									null,
-									[Validators.required, Validators.min(0)]
+									[Validators.required, Validators.min(1)]
 								]
 							})
 						])

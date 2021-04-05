@@ -9,7 +9,9 @@
 			<app-intro
 				[text]="'Press next to start applying for a loan.'"
 			></app-intro>
-			<button mat-button matStepperNext type="button">Next</button>
+			<button mat-button matStepperNext type="button" class="next">
+				Next
+			</button>
 		</mat-step>
 		<ng-container *ngFor="let step of steps; let i = index;">
 			<mat-step
@@ -62,7 +64,12 @@
 					<button mat-button matStepperPrevious type="button">
 						Back
 					</button>
-					<button mat-button matStepperNext type="button">
+					<button
+						mat-button
+						matStepperNext
+						type="button"
+						class="next"
+					>
 						Next
 					</button>
 				</div>
