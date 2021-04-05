@@ -129,12 +129,15 @@ export class LoanFormReactiveComponent implements OnInit, OnDestroy {
 							Validators.maxLength(8)
 						]);
 				}
-				this.stepsForm
-					.get("steps")
-					.get([2])
-					.get("contact")
-					.updateValueAndValidity({ emitEvent: false });
-				this.stepsForm.updateValueAndValidity({ emitEvent: false });
+				setTimeout(
+					() =>
+						this.stepsForm
+							.get("steps")
+							.get([2])
+							.get("contact")
+							.updateValueAndValidity({ emitEvent: false }),
+					0
+				);
 			});
 	}
 

@@ -10,7 +10,7 @@
 	<div class="d-flex flex-column second p-0">
 		<div class="py-2">{{ data[0].income}} (EUR)</div>
 		<div class="py-2">{{isEmail ? 'Email' : 'Phone'}}</div>
-		<div class="py-2">
+		<div class="py-2 text-overflow-hidden">
 			<span *ngIf="isEmail"> {{ data[2].contact}} </span>
 			<span *ngIf="!isEmail">
 				(+370) {{ data[2].contact?.slice(0,3) }} {{
