@@ -20,7 +20,7 @@ export class QuestionService {
             placeholder: 'Monthy Income After Taxes (EUR)',
             required: true,
             type: 'number',
-            value: 69
+            value: null
           }),
         ]
       }),
@@ -36,11 +36,12 @@ export class QuestionService {
               placeholder: 'Contact method',
               required: true,
               options: [
-                {key: 'phone',  value: 'Phone call'},
-                {key: 'email',   value: 'Email'},
-                {key: 'sms',  value: 'SMS'},
+                {key: 'none',  value: 0, label: 'Select one'},
+                {key: 'phone',  value: 1, label: 'Phone call'},
+                {key: 'email',   value: 2, label: 'Email'},
+                {key: 'sms',  value: 3, label: 'SMS'},
               ],
-              value: null
+              value: 0
             })
           ]
         }),
@@ -52,10 +53,11 @@ export class QuestionService {
         questions: [
           new TextboxQuestion({
             key: 'contact',
-            label: 'Enter your phone',
-            placeholder: 'Enter your phone',
+            label: 'Phone number',
+            placeholder: 'Enter phone (+370)',
             required: true,
-            value: null
+            value: null,
+            type: 'number'
           })
         ]
       }),
@@ -69,6 +71,7 @@ export class QuestionService {
             key: 'amount',
             label: 'Loan amount',
             placeholder: 'Loan Amount (EUR)',
+            type: 'number',
             required: true,
             value: null,
             order: 3

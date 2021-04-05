@@ -1,9 +1,0 @@
-<div class="form-group">
-    <div class="col-auto px-0" [ngSwitch]="question.controlType">
-        <app-input *ngSwitchCase="'textbox'" [form]="form" [formArrayNameString]="formArrayNameString" [formGroupNameNumber]="formGroupNameNumber" [question]="question"></app-input>
-        <app-select *ngSwitchCase="'dropdown'" [form]="form" [formArrayNameString]="formArrayNameString" [formGroupNameNumber]="formGroupNameNumber" [question]="question"></app-select>
-        <app-error *ngIf="showError" [error]="questionControls"></app-error>
-    </div>
-</div>
-
-

@@ -72,9 +72,8 @@ h1 {
   margin: 0;
 }
 
-input,
-select {
-  max-width: 250px !important;
+.mat-form-field-infix {
+  width: 240px !important;
 }
 
 @media all and (min-width: 0px) and (max-width: 767px) {
