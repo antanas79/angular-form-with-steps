@@ -1,7 +1,7 @@
-import { Step } from './step';
+import { Step } from "./step";
 
-describe('Step', () => {
-  it('should create an instance', () => {
-    expect(new Step()).toBeTruthy();
-  });
+describe("Step", () => {
+	it("should create an instance", () => {
+		void expect(new Step()).toBeTruthy();
+	});
 });

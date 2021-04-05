@@ -1,35 +1,27 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { TestBed, waitForAsync } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
 
-describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+describe("AppComponent", () => {
+	beforeEach(
+		waitForAsync(() => {
+			void TestBed.configureTestingModule({
+				imports: [RouterTestingModule],
+				declarations: [AppComponent]
+			}).compileComponents();
+		})
+	);
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+	it("should create the app", () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.componentInstance;
+		void expect(app).toBeTruthy();
+	});
 
-  it(`should have as title 'angular-form-with-steps'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-form-with-steps');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-form-with-steps app is running!');
-  });
+	it(`should have as title 'angular-form-with-steps'`, () => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.componentInstance;
+		void expect(app.title).toEqual("angular-form-with-steps");
+	});
 });

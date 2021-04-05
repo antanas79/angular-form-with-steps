@@ -1,7 +1,7 @@
-import { DropdownQuestion } from './question-dropdown';
+import { DropdownQuestion } from "./question-dropdown";
 
-describe('DropdownQuestion', () => {
-  it('should create an instance', () => {
-    expect(new DropdownQuestion()).toBeTruthy();
-  });
+describe("DropdownQuestion", () => {
+	it("should create an instance", () => {
+		void expect(new DropdownQuestion()).toBeTruthy();
+	});
 });
